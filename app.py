@@ -1,14 +1,10 @@
-import flask_migrate
 from flask import Flask, request, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
 from config import Configuration
 
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_admin import AdminIndexView
 
-# from flask_migrate import Migrate, MigrateCommand
-# from flask_script import Manager
 
 from flask_login import current_user
 
@@ -17,26 +13,15 @@ from flask_security import Security, SQLAlchemyUserDatastore
 from models import *
 
 
-def create_app():
-    app = Flask(__name__)
-    app.config.from_object(Configuration)
-    db.init_app(app)
-    db.create_all()
-    return app
+app = Flask(__name__)
+app.config.from_object(Configuration)
 
 
-# db.init_app(app)
-'''
 with app.app_context():
     db.init_app(app)
     db.create_all()
-'''
 
-'''
-migrate = flask_migrate.Migrate(app, db)
-manager = Manager(app)
-manager.add_command('db', MigrateCommand)
-'''
+
 # ADMIN
 
 
@@ -76,6 +61,3 @@ admin.add_view(AdminView(Author, db.session))
 admin.add_view(AdminView(Book, db.session))
 admin.add_view(AdminView(User, db.session))
 admin.add_view(AdminView(Role, db.session))
-
-
-app.run()

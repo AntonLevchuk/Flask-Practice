@@ -4,6 +4,8 @@ class Configuration(object):
     FLASK_APP = "webapp"
     DEBUG = True
 
+
 # Flask-Security
     SECRET_KEY = 'mysecret'
     SECURITY_PASSWORD_SALT = 'mysecretsalt'
+    SECURITY_REGISTERABLE = True

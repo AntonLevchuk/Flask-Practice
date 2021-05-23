@@ -1,12 +1,7 @@
 from flask_security import UserMixin, RoleMixin
 
 from flask_sqlalchemy import SQLAlchemy
-'''
-try:
-    from app import app as app
-except ImportError:
-    from __main__ import app
-'''
+
 db = SQLAlchemy()
 
 
