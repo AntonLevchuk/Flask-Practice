@@ -1,13 +1,12 @@
 from app import db
 from app import user_datastore
-from app import app
 
 from models import User, Role
 
-with app.app_context():
-    if __name__ == '__main__':
-        email = 'admin@admin.ru'
-        password = 'admin'
+
+if __name__ == '__main__':
+    email = 'admin@admin.ru'
+    password = 'admin'
 
     user_datastore.create_user(email=email, password=password)
     db.session.commit()

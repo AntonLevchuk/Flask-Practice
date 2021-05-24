@@ -22,6 +22,19 @@ with app.app_context():
     db.create_all()
 
 
+# flask-security
+user_datastore = SQLAlchemyUserDatastore(db, User, Role)
+security = Security(app, user_datastore)
+
+# admin user
+user_datastore.create_user(email='admin4@local.com', password='admin')
+user = User.query.first()
+
+user_datastore.create_role(name='admin', description='administrator')
+
+role = Role.query.first()
+user_datastore.add_role_to_user(user, role)
+
 # ADMIN
 
 
@@ -39,21 +52,6 @@ class HomeAdminView(AdminIndexView):
 
     def inaccessible_callback(self, name, **kwargs):
         return redirect(url_for('security.login', next=request.url))
-
-
-# flask-security
-user_datastore = SQLAlchemyUserDatastore(db, User, Role)
-security = Security(app, user_datastore)
-
-# admin user
-user_datastore.create_user(email='admin4@local.com', password='admin')
-user = User.query.first()
-
-user_datastore.create_role(name='admin', description='administrator')
-
-
-role = Role.query.first()
-user_datastore.add_role_to_user(user, role)
 
 
 admin = Admin(app, 'FlaskApp', url='/admin', index_view=HomeAdminView(name='Home'))

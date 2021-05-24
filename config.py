@@ -9,3 +9,6 @@ class Configuration(object):
     SECRET_KEY = 'mysecret'
     SECURITY_PASSWORD_SALT = 'mysecretsalt'
     SECURITY_REGISTERABLE = True
+    SECURITY_SEND_REGISTER_EMAIL = False
+    SECURITY_RECOVERABLE = True
+    SECURITY_CHANGEABLE = True
