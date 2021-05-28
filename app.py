@@ -13,13 +13,17 @@ from flask_security import Security, SQLAlchemyUserDatastore
 from models import *
 
 
-app = Flask(__name__)
-app.config.from_object(Configuration)
-
-
-with app.app_context():
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(Configuration)
     db.init_app(app)
-    db.create_all()
+    return app
+
+
+app = create_app()
+app.app_context().push()
+
+db.create_all()
 
 
 # flask-security

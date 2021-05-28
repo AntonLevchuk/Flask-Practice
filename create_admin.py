@@ -1,7 +1,9 @@
 from app import db
 from app import user_datastore
+from app import app
 
 from models import User, Role
+
 
 
 if __name__ == '__main__':

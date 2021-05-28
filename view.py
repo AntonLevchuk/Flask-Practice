@@ -10,6 +10,7 @@ from flask_security.utils import hash_password
 def index():
     return render_template('index.html')
 
+
 '''
 @app.route('/register', methods=['POST', 'GET'])
 def register():
